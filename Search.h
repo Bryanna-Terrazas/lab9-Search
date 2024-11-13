@@ -7,7 +7,11 @@ using namespace std;
 //   bonus! try to implement your function so that it can accept
 //     many types of data (int, char, string, etc.)
 template <typename flexibleType> // ???
-void printArray(...) {}
+void printArray(flexibleType arr[], int n) {
+    for(int i = 0; i < n; i++){
+        cout << arr[i] << " ";
+    }
+}
 
 // Implement a sequential search algorithm
 // your function should search for a target value (target)
@@ -15,6 +19,20 @@ void printArray(...) {}
 // return true if target exists in the array within this range,
 //    return false otherwise
 bool seqSearch(string target, string arr[], int start, int end) {
+    if(end == start){
+        if(arr[start]==target){
+            return true;
+        }
+        return false;
+    }
+    for(int i = 0; i < end+1; i++){
+        if(arr[i] == target){
+            return true;
+        }
+        else{
+            continue;
+        }
+    }
     return false;
 }
 
@@ -22,6 +40,41 @@ bool seqSearch(string target, string arr[], int start, int end) {
 // Return true if target exists in the array with size n,
 //    return false otherwise 
 bool binSearch(float target, float arr[], int n) {
+    int start = 0;
+    int end = n - 1;
+    if(arr[start] == arr[end]){
+        if(arr[start] == target){
+            return true;
+        }
+        return false;
+    }
+    int mid = n/2;
+    if (arr[mid] == target){
+        return true;
+    }
+    if(arr[mid] < target){
+        start = mid + 1;
+        for(int i = 0; i < n; i++){
+            if(arr[i] == target){
+                return true;
+            }
+            else{
+                continue;
+            }
+        }
+    }
+    if(arr[mid] > target){
+        end = mid - 1;
+        for(int i = 0; i < mid; i++){
+            if(arr[i] == target){
+                return true;
+            }
+            else{
+                continue;
+            }
+        }
+    }
+
     return false;	
 }
 
