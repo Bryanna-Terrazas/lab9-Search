@@ -82,11 +82,32 @@ bool binSearch(float target, float arr[], int n) {
 // Return true if target exists in the array with size n
 //   return false otherwise
 bool binSearchR(char target, char charray[], int n) {
-    // base case
-
+    int mid = n/2;
+    if(charray[mid]==target){
+        return true;
+    }
+    if(n == 0){
+        return false;
+    }
+    if(charray[0] >= charray[n-1]){
+        return false;
+    }
+    // else if(charray[0] == charray[n-1]){
+    //     if(charray[0] == target){
+    //         return true;
+    //     }
+    //     return false;
+    // }
     //general case
-
-    return false;
+    
+    if(charray[mid] < target){
+        char *start = &charray[mid+1];
+        return binSearchR(target, start, n/2);
+    }
+    else if (charray[mid] > target){
+        return binSearchR(target, charray, n/2);
+    }
+    // return false;
 }
 
 // Implement a brand new sorting algorithm
