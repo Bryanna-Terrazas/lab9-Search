@@ -107,7 +107,7 @@ bool binSearchR(char target, char charray[], int n) {
     else if (charray[mid] > target){
         return binSearchR(target, charray, n/2);
     }
-    // return false;
+    return false;
 }
 
 // Implement a brand new sorting algorithm
@@ -131,10 +131,48 @@ Step 3: Finally, use your two functions above to complete the following in newSo
         *** You can make this recursive, if you wish!
 */
 
-void swap(double darray[], ...) {}
-
-int minFind(double darray[], ...) {
-    return -1;
+void swap(double darray[], int index1, int index2) {
+    double temp = darray[index2];
+    darray[index2] = darray[index1];
+    darray[index1] = temp;
 }
 
-void newSort(double darray[], int n) {}
+int minFind(double darray[], int n) {
+    int temp = 0;
+    double another = 0.0;
+    for(int i = 1; i < n; i++){
+        if(darray[i] > another){
+            continue;
+        }
+        else{
+            temp = i;
+            another = darray[i];
+            continue;
+        }
+    }
+    return temp;
+}
+/*
+Step 3: Finally, use your two functions above to complete the following in newSort():
+        1 - search through the array to find the location of the smallest value
+        2 - swap this value with the value at the start of the array
+        3 - the first element is now sorted! 
+            Redo your sort on the remaining elements (from index 1 to end)
+            On the next iteration, you should be swapping the smallest remaining value 
+                with the second index value in the array
+            ...then swapping the smallest remaining value with the third indexed value... etc.
+            
+        4 - continue iterating until you reach the end of the list
+        *** You can make this recursive, if you wish!
+*/
+
+void newSort(double darray[], int n) {
+    int min = minFind(darray, n);
+    swap(darray, 0, min);
+
+    for(int i = 1; i < n; i++){
+        min = minFind(darray + i, n);
+        swap(darray, i, min);
+    }
+
+}
