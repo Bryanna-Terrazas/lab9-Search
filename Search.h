@@ -138,41 +138,30 @@ void swap(double darray[], int index1, int index2) {
 }
 
 int minFind(double darray[], int n) {
-    int temp = 0;
-    double another = 0.0;
-    for(int i = 1; i < n; i++){
-        if(darray[i] > another){
-            continue;
+    double min = darray[0];
+    int index = 0;
+    int i = 0;
+    while(i < n){
+        if( darray[i] < min){
+            min = darray[i];
+            index = i;
         }
         else{
-            temp = i;
-            another = darray[i];
-            continue;
+            i++;
         }
+
     }
-    return temp;
+    return index;
 }
-/*
-Step 3: Finally, use your two functions above to complete the following in newSort():
-        1 - search through the array to find the location of the smallest value
-        2 - swap this value with the value at the start of the array
-        3 - the first element is now sorted! 
-            Redo your sort on the remaining elements (from index 1 to end)
-            On the next iteration, you should be swapping the smallest remaining value 
-                with the second index value in the array
-            ...then swapping the smallest remaining value with the third indexed value... etc.
-            
-        4 - continue iterating until you reach the end of the list
-        *** You can make this recursive, if you wish!
-*/
 
 void newSort(double darray[], int n) {
-    int min = minFind(darray, n);
-    swap(darray, 0, min);
-
-    for(int i = 1; i < n; i++){
-        min = minFind(darray + i, n);
-        swap(darray, i, min);
+    for(int j = 0; j < n-1; j++){
+        for(int i = 0; i+1 < n; i++) {
+            if(darray[i] < darray[i+1]) {
+            }
+            else{
+                swap(darray, i, i+1);
+            }
+        }
     }
-
 }
